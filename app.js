@@ -445,7 +445,8 @@ function renderHistoryItem(entry) {
     if (link) openQr(link);
   });
   item.querySelector('.open-btn').addEventListener('click', () => {
-    if (entry.link) window.open(entry.link, '_blank', 'noopener');
+    const link = displayLinkFor(entry);
+    if (link) window.open(link, '_blank', 'noopener');
   });
   item.querySelector('.direct-btn').addEventListener('click', () => openDirectLink(entry.id));
   item.querySelector('.rename-btn').addEventListener('click', () => openRename(entry.id, entry.name));
@@ -835,7 +836,8 @@ document.getElementById('openLinkBtn').addEventListener('click', () => {
   if (!raw) return;
   const code = extractGofileCode(raw);
   if (!code) { showToast('Lien invalide'); return; }
-  window.open(`https://gofile.io/d/${code}`, '_blank', 'noopener');
+  const target = publicDomain ? `${publicDomain.replace(/\/$/, '')}/r/${code}` : `https://gofile.io/d/${code}`;
+  window.open(target, '_blank', 'noopener');
 });
 
 // ---------- Direct download link modal ----------
