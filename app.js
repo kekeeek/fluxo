@@ -242,7 +242,7 @@ addAccountBox.addEventListener('click', () => {
   document.getElementById('manualTokenInput').focus();
 });
 
-loginBtn.addEventListener('click', () => window.open('https://gofile.io/myProfile', '_blank', 'noopener'));
+loginBtn.addEventListener('click', () => window.open('https://gofile.io/login', '_blank', 'noopener'));
 document.getElementById('fmLoginBtn').addEventListener('click', () => settingsOverlay.classList.remove('hidden'));
 
 logoutBtn.addEventListener('click', () => {
