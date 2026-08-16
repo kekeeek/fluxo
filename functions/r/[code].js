@@ -7,19 +7,44 @@
 //
 // File path convention for Cloudflare Pages Functions: this file at
 // functions/r/[code].js handles GET/HEAD requests to /r/<anything>.
+//
+// gofile now requires an authenticated request even to read public file
+// info. Set a GOFILE_TOKEN environment variable in the Cloudflare Pages
+// project (Settings → Environment variables) with your own gofile account
+// token for stable, rate-limit-friendly access. Without it, this function
+// falls back to creating a fresh temporary guest account per request, which
+// works but is more likely to get rate-limited under real traffic.
+
+async function getToken(env) {
+  if (env && env.GOFILE_TOKEN) return env.GOFILE_TOKEN;
+
+  const res = await fetch('https://api.gofile.io/accounts', { method: 'POST' });
+  const data = await res.json();
+  if (data.status !== 'ok' || !data.data || !data.data.token) {
+    throw new Error('Impossible de créer un compte invité gofile.');
+  }
+  return data.data.token;
+}
 
 export async function onRequest(context) {
-  const { params, request } = context;
+  const { params, request, env } = context;
   const code = params.code;
 
   if (!code || typeof code !== 'string') {
     return new Response('Lien invalide.', { status: 400 });
   }
 
+  let token;
+  try {
+    token = await getToken(env);
+  } catch (e) {
+    return new Response('Impossible de contacter gofile pour le moment.', { status: 502 });
+  }
+
   let meta;
   try {
     const metaRes = await fetch(`https://api.gofile.io/contents/${code}`, {
-      headers: { 'User-Agent': 'Fluxo/1.0' }
+      headers: { Authorization: `Bearer ${token}` }
     });
     meta = await metaRes.json();
   } catch (e) {
