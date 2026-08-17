@@ -242,7 +242,7 @@ addAccountBox.addEventListener('click', () => {
   document.getElementById('manualTokenInput').focus();
 });
 
-loginBtn.addEventListener('click', () => window.open('https://gofile.io/login', '_blank', 'noopener'));
+loginBtn.addEventListener('click', () => window.open('https://gofile.io/', '_blank', 'noopener'));
 document.getElementById('fmLoginBtn').addEventListener('click', () => settingsOverlay.classList.remove('hidden'));
 
 logoutBtn.addEventListener('click', () => {
@@ -274,6 +274,14 @@ let publicDomain = '';
 
 function loadSettingsUI() {
   const settings = getSettings();
+
+  // Migrate a stale publicDomain saved before the Cloudflare move.
+  const KNOWN_OLD_DOMAINS = ['https://kekeeek.github.io/fluxo', 'https://kekeeek.github.io/fluxo/'];
+  if (KNOWN_OLD_DOMAINS.includes(settings.publicDomain)) {
+    settings.publicDomain = '';
+    setSettings({ publicDomain: '' });
+  }
+
   defaultPrivateToggle.checked = !!settings.defaultPrivate;
   autoCopyToggle.checked = !!settings.autoCopy;
   autoCopyEnabled = !!settings.autoCopy;
