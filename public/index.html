@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fluxo — Envoie et partage tes fichiers</title>
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<meta name="description" content="Fluxo, une appli de bureau simple pour envoyer et partager des fichiers, sans limite de taille." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark"></span>
+      <span class="brand-name">Fluxo</span>
+    </div>
+    <nav class="topnav">
+      <a href="app.html">Ouvrir l'app</a>
+      <a href="#download">Télécharger</a>
+      <a href="#about">À propos</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Envoie n'importe quel fichier.<br>Partage un lien. C'est tout.</h1>
+      <p class="hero-sub">Fluxo est une appli de bureau simple, sans limite de taille annoncée, pour envoyer et partager tes fichiers en quelques secondes.</p>
+      <div class="hero-actions">
+        <a href="app.html" class="btn btn-primary">Utiliser Fluxo dans le navigateur</a>
+        <a href="#download" class="btn btn-secondary">Télécharger l'appli</a>
+      </div>
+    </section>
+
+    <section id="download" class="section">
+      <h2>Télécharger</h2>
+      <div class="download-cards">
+        <div class="download-card">
+          <h3>Windows — Installeur</h3>
+          <p>Installation classique avec raccourci bureau.</p>
+          <a class="btn btn-secondary" href="https://github.com/kekeeek/fluxo/releases/latest">Voir les releases</a>
+        </div>
+        <div class="download-card">
+          <h3>Windows — Portable</h3>
+          <p>Aucune installation, un seul fichier .exe.</p>
+          <a class="btn btn-secondary" href="https://github.com/kekeeek/fluxo/releases/latest">Voir les releases</a>
+        </div>
+      </div>
+      <p class="hint-text">Les liens ci-dessus pointent vers <code>github.com/kekeeek/fluxo/releases</code> — pense à y publier les .exe dans une release.</p>
+    </section>
+
+    <section id="about" class="section">
+      <h2>À propos de Fluxo</h2>
+      <p>Fluxo est une interface indépendante. Elle n'héberge aucun fichier elle-même : chaque envoi passe par l'API publique de <a href="https://gofile.io" target="_blank" rel="noopener">gofile.io</a>, qui stocke réellement les fichiers sur ses serveurs. Les liens partagés depuis Fluxo passent par ce site pour rester courts et cohérents avec la marque Fluxo, puis redirigent vers le fichier hébergé.</p>
+    </section>
+
+    <section id="faq" class="section">
+      <h2>Questions fréquentes</h2>
+      <div class="faq-item">
+        <h3>Où sont stockés les fichiers ?</h3>
+        <p>Sur les serveurs de gofile.io, via son API publique. Voir la section "À propos" ci-dessus.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Pourquoi un lien fluxo au lieu d'un lien gofile ?</h3>
+        <p>Pour que les liens partagés restent courts et à l'image de Fluxo. Techniquement, ce site se contente de rediriger immédiatement vers le fichier réel hébergé par gofile.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Est-ce gratuit ?</h3>
+        <p>Oui. L'appli et ce site sont gratuits ; le stockage sous-jacent dépend des conditions de gofile (compte gratuit ou premium).</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Fluxo n'est pas affilié à gofile.io. Fluxo est un client indépendant utilisant l'API publique de gofile.</p>
+  </footer>
+
+</body>
+</html>
